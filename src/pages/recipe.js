@@ -1,18 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 
+import { ButtonLink } from 'react-router-bootstrap';
+
 import { recipes } from '../stores/recipes';
 
 class RecipeListItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            recipe: props.recipe
-        }
-    }
-
     render() {
+        const { recipe, actions } = this.props;
+
+        console.log(recipe);
         return (
-            <li>{this.state.recipe.name}</li>
+            <li>
+                <ButtonLink to="show-recipe" params={{id: recipe.index}}>
+                    {recipe.recipe.name}
+                </ButtonLink>
+            </li>
         );
     }
 }
@@ -20,15 +22,12 @@ class RecipeListItem extends Component {
 export class RecipeList extends Component {
     eachRecipe(recipes) {
         return recipes.map(
-            recipe => <RecipeListItem recipe={recipe} />
+            (recipe, index) => <RecipeListItem recipe={{index:index, recipe: recipe}} />
         );
     }
 
     render() {
         const { recipes, actions } = this.props;
-        console.log(this.props);
-
-        console.log(recipes);
 
         return (
             <ul>
@@ -39,17 +38,11 @@ export class RecipeList extends Component {
 }
 
 export class RecipePresentation extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            recipe: props.recipe
-        };
-    }
-
     render() {
+        const { recipe, actions } = this.props;
         return (
             <div>
-                {this.state.recipe.name}
+                {recipe.name}
             </div>
         )
     }
