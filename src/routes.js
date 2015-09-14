@@ -19,8 +19,9 @@ export default (
     <Route path="/" handler={App} >
         <DefaultRoute handler={Index} />
         <Route name="about" path="about" handler={About} />
-        <Route name="recipes" path="recipes" handler={RecipeList}/>
-        <Route name="show-recipe" path="recipes/:id" handler={RecipePresentation} />
+        <Route name="recipes" path="recipes" handler={RecipeList}>
+            <Route name="show-recipe" path="/recipes/:id" handler={RecipePresentation} />
+        </Route>
         <NotFoundRoute handler={NotFound} />
     </Route>
 );

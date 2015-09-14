@@ -9,7 +9,9 @@ export const initialState = [
     { name: 'Havregrynsgröt' },
     { name: 'Risgrynsgröt' },
     { name: 'Havregrynsgröt' },
-    { name: 'Chokladbollar' }
+    { name: 'Chokladbollar' },
+    { name: 'Chokladpudding' },
+    { name: 'Finska pinnar' }
 ];
 
 const addRecipe =

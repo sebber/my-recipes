@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+import { Link } from 'react-router';
 import { ButtonLink } from 'react-router-bootstrap';
 
 import { recipes } from '../stores/recipes';
@@ -8,12 +9,11 @@ class RecipeListItem extends Component {
     render() {
         const { recipe, actions } = this.props;
 
-        console.log(recipe);
         return (
             <li>
-                <ButtonLink to="show-recipe" params={{id: recipe.index}}>
+                <Link to="show-recipe" params={{id: recipe.index}}>
                     {recipe.recipe.name}
-                </ButtonLink>
+                </Link>
             </li>
         );
     }
@@ -38,11 +38,21 @@ export class RecipeList extends Component {
 }
 
 export class RecipePresentation extends Component {
+
+    constructor(props) {
+        super(props);
+        const { recipes, actions, params } = this.props;
+        const { id } = params;
+
+        this.state = {
+            recipe: recipes[id] || { name: 'No recipe found' }
+        };
+    }
+
     render() {
-        const { recipe, actions } = this.props;
         return (
             <div>
-                {recipe.name}
+                <h1>{this.state.recipe}</h1>
             </div>
         )
     }
